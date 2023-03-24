@@ -1,0 +1,38 @@
+---
+title: "HW02"
+output: html_document
+date: "2023-03-21"
+---
+
+```{r}
+# 2
+df <- read.csv('WestRoxbury2.csv')
+
+# 2-1
+df1 <- aggregate(df$TOTAL.VALUE, by = list(df$REMODEL), FUN = mean)
+
+names(df1) <- c("REMODEL", "MEAN.VALUE")
+
+barplot(df1$MEAN.VALUE, names.arg = df1$REMODEL, 
+        col=c('brown', 'lightcoral', 'mistyrose'), 
+        xlab = "REMODEL", ylab = "MEAN.VALUE")
+
+# 2-2
+## 1 : 변수 중 TAX, LOTSQFT, GROSS AREA, LIVING AREA 선택 
+df2 <- df[, c('TOTAL.VALUE', 'TAX', 'GROSS.AREA', 
+              'LIVING.AREA', 'LOT.SQFT')]
+
+## 2 : make heatmap
+heatmap(cor(df2), Rowv = NA, Colv = NA)
+
+library(gplots)
+heatmap.2(cor(df2), Rowv = FALSE, Colv = FALSE, dendrogram = "none",
+          cellnote = round(cor(df2),2),
+          notecol = "black", key = FALSE, trace = 'none', margins = c(9,9))
+
+## 3 
+# 분포
+library(GGally)
+ggpairs(df2[, c(1, 2, 3, 4,5)])
+
+```

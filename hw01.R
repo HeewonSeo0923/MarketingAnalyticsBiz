@@ -1,0 +1,21 @@
+# 01
+df <- read.csv('Telecom.csv')
+
+# 02
+df$REMODEL.Churn <- ifelse(df$Churn == 'Yes', 1, 0)
+
+# 03
+df$Contract.Oneyear <- ifelse(df$Contract=="One year",1,0)
+
+df$Contract.Twoyear <- ifelse(df$Contract=="Two year",1,0)
+
+# 04
+train.rows <- sample(rownames(df), dim(df)[1]*0.5)
+
+vaild.rows <- sample(setdiff(rownames(df), train.rows), 
+                     dim(df)[1]*0.25)
+test.rows <- setdiff(rownames(df), union(train.rows, vaild.rows))
+
+train.data <- df[train.rows, ]
+vaild.data <- df[vaild.rows, ]
+test.data <- df[test.rows, ]
