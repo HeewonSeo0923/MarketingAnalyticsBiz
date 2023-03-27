@@ -8,7 +8,7 @@ barplot(df1$MeanMEDV, names.arg = df1$CHAS, col=c("darkkhaki","darkorange"), xla
 
 plot(df$MEDV ~ df$LSTAT, xlab ="LSTAT", ylab ="MEDV", col="darkorchid4")
 
-hist(df$MEDV, xlab = "MEDV", col="steelblue3")
+hist(df$MEDV, xlab = "MEDV", col="steelblue4")
 
 boxplot(df$MEDV ~ df$CHAS, col=c("darkkhaki","darkorange"), xlab = "CHAS", ylab = "MEDV")
 
