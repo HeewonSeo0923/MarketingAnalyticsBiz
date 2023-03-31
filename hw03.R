@@ -21,12 +21,7 @@ summary(house.lm)
 
 ## 1. Exhaustive Search
 library(leaps)
-
-MEDV <- as.data.frame(model.matrix(~ 0 + MEDV, data=train.df))
-
-train.df1 <- cbind(train.df[,-4], MEDV[,-1])
-head(train.df1)
-search <- regsubsets(MEDV ~ ., data = train.df1, nbest = 1, nvmax = dim(train.df1)[2],
+search <- regsubsets(MEDV ~ ., data = train.df, nbest = 1, nvmax = dim(train.df)[2],
                      method = "exhaustive")
 sum <- summary(search)
 

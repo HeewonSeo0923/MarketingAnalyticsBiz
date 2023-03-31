@@ -27,7 +27,7 @@ library(forecast)
 
 # use predict() to make predictions on a new set.
 car.lm.pred <- predict(car.lm, valid.df)
-options(scipen=999, digits = 0) # 소숫점 없애기 
+options(scipen=999) # 소숫점 없애기 
 some.residuals <- valid.df$Price[1:20] - car.lm.pred[1:20]   # 원래 - 예측값 
 data.frame("Predicted" = car.lm.pred[1:20], "Actual" = valid.df$Price[1:20], "Residual" = some.residuals)
 options(scipen=999, digits = 3)
@@ -73,3 +73,12 @@ car.lm.step <- step(car.lm.null,
                       "forward")
 
 summary(car.lm.step) 
+
+## Backward Elimination
+car.lm.step <- step(car.lm, direction = "backward")
+summary(car.lm.step) 
+
+## Stepwise Selection
+car.lm.step <- step(car.lm, direction = "both")
+summary(car.lm.step) 
+
